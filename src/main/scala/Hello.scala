@@ -24,7 +24,8 @@ val producerSettings: ProducerSettings = ProducerSettings(
 )
 
 val consumerAndProducer =
-  ZLayer.scoped(Producer.make(producerSettings))
+  ZLayer.scoped(Consumer.make(consumerSettings)) ++
+    ZLayer.scoped(Producer.make(producerSettings))
 
 val consumeProduceStream = Consumer
   .subscribeAnd(Subscription.topics("events-4"))
